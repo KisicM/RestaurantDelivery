@@ -15,13 +15,14 @@ namespace Domain
         public UserRole UserRole { get; set; }
         public string Image { get; set; }
         public bool Approved { get; set; }
+        public VerificationStatus Status { get; set; }
 
         public User()
         {
             
         }
 
-        public User(string username, string email, string password, string name, string surname, DateTime dateOfBirth, string address, UserRole userRole, string image, bool approved)
+        public User(string username, string email, string password, string name, string surname, DateTime dateOfBirth, string address, UserRole userRole, string image, bool approved, VerificationStatus status)
         {
             Username = username;
             Email = email;
@@ -33,6 +34,7 @@ namespace Domain
             UserRole = userRole;
             Image = image;
             Approved = approved;
+            Status = status;
         }
     }
 }

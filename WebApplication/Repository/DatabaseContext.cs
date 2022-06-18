@@ -30,7 +30,8 @@ namespace Repository
                         Approved = true,
                         Image = "",
                         UserRole = UserRole.Admin,
-                        DateOfBirth = new DateTime(2022, 06, 25)
+                        DateOfBirth = new DateTime(2022, 06, 25),
+                        Status = VerificationStatus.Approved
                     },
                     new User()
                     {
@@ -44,7 +45,9 @@ namespace Repository
                         Approved = false,
                         Image = "",
                         UserRole = UserRole.Deliverer,
-                        DateOfBirth = new DateTime(2022, 06, 25)
+                        DateOfBirth = new DateTime(2022, 06, 25),
+                        Status = VerificationStatus.Processing
+
                     },
                     new User()
                     {
@@ -58,11 +61,58 @@ namespace Repository
                         Approved = true,
                         Image = "",
                         UserRole = UserRole.Customer,
-                        DateOfBirth = new DateTime(2022, 06, 25)
+                        DateOfBirth = new DateTime(2022, 06, 25),
+                        Status = VerificationStatus.Approved
                     }
                 );
             });
 
+            modelBuilder.Entity<Article>(a =>
+            {
+                a.HasData(
+                    new Article()
+                    {
+                        Id = -1,
+                        Name = "Pizza",
+                        Ingredients = "smth",
+                        Price = 250
+                    },
+                    new Article()
+                    {
+                        Id = -2,
+                        Name = "Vine",
+                        Ingredients = "smth",
+                        Price = 250
+                    }
+                );
+            });
+            modelBuilder.Entity<Order>(a =>
+            {
+                a.HasData(
+                    new Order()
+                    {
+                        Id = -1,
+                        Address = "Novi Sad",
+                        Comment = "Ring",
+                        Price = 500,
+                        StarTime = new DateTime(2022, 06, 25, 15, 00, 00),
+                        EndTime = new DateTime(2022, 06, 25, 15, 05, 00),
+                        CustomerId = -3,
+                        DelivererId = 0
+                    },
+                    new Order()
+                    {
+                        Id = -2,
+                        Address = "Novi Sad",
+                        Comment = "Ring",
+                        Price = 250,
+                        StarTime = new DateTime(2022, 06, 25, 15, 00, 00),
+                        EndTime = new DateTime(2022, 06, 25, 15, 05, 00),
+                        CustomerId = -3,
+                        DelivererId = -2
+                    }
+                );
+            });
         }
 
     }

@@ -10,8 +10,8 @@ using Repository;
 namespace Repository.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20220617210653_First")]
-    partial class First
+    [Migration("20220618232803_MigrationName")]
+    partial class MigrationName
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,100 @@ namespace Repository.Migrations
                 .UseIdentityByDefaultColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 63)
                 .HasAnnotation("ProductVersion", "5.0.0");
+
+            modelBuilder.Entity("Domain.Article", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .UseIdentityByDefaultColumn();
+
+                    b.Property<string>("Ingredients")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("double precision");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Article");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = -1,
+                            Ingredients = "smth",
+                            Name = "Pizza",
+                            Price = 250.0
+                        },
+                        new
+                        {
+                            Id = -2,
+                            Ingredients = "smth",
+                            Name = "Vine",
+                            Price = 250.0
+                        });
+                });
+
+            modelBuilder.Entity("Domain.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .UseIdentityByDefaultColumn();
+
+                    b.Property<string>("Address")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("text");
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("DelivererId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("EndTime")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("double precision");
+
+                    b.Property<DateTime>("StarTime")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Order");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = -1,
+                            Address = "Novi Sad",
+                            Comment = "Ring",
+                            CustomerId = -3,
+                            DelivererId = 0,
+                            EndTime = new DateTime(2022, 6, 25, 15, 5, 0, 0, DateTimeKind.Unspecified),
+                            Price = 500.0,
+                            StarTime = new DateTime(2022, 6, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = -2,
+                            Address = "Novi Sad",
+                            Comment = "Ring",
+                            CustomerId = -3,
+                            DelivererId = -2,
+                            EndTime = new DateTime(2022, 6, 25, 15, 5, 0, 0, DateTimeKind.Unspecified),
+                            Price = 250.0,
+                            StarTime = new DateTime(2022, 6, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
+                });
 
             modelBuilder.Entity("Domain.User", b =>
                 {
@@ -49,6 +143,9 @@ namespace Repository.Migrations
                     b.Property<string>("Password")
                         .HasColumnType("text");
 
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Surname")
                         .HasColumnType("text");
 
@@ -73,6 +170,7 @@ namespace Repository.Migrations
                             Image = "",
                             Name = "John",
                             Password = "ftn",
+                            Status = 1,
                             Surname = "Doe",
                             UserRole = 2,
                             Username = "admin"
@@ -87,6 +185,7 @@ namespace Repository.Migrations
                             Image = "",
                             Name = "John",
                             Password = "ftn",
+                            Status = 0,
                             Surname = "Doe",
                             UserRole = 1,
                             Username = "deliverer"
@@ -101,6 +200,7 @@ namespace Repository.Migrations
                             Image = "",
                             Name = "John",
                             Password = "ftn",
+                            Status = 1,
                             Surname = "Doe",
                             UserRole = 0,
                             Username = "customer"
