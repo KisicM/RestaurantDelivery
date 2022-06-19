@@ -81,7 +81,7 @@ namespace Repository.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("double precision");
 
-                    b.Property<DateTime>("StarTime")
+                    b.Property<DateTime>("StartTime")
                         .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
@@ -98,7 +98,7 @@ namespace Repository.Migrations
                             DelivererId = 0,
                             EndTime = new DateTime(2022, 6, 25, 15, 5, 0, 0, DateTimeKind.Unspecified),
                             Price = 500.0,
-                            StarTime = new DateTime(2022, 6, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            StartTime = new DateTime(2022, 6, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
@@ -109,7 +109,7 @@ namespace Repository.Migrations
                             DelivererId = -2,
                             EndTime = new DateTime(2022, 6, 25, 15, 5, 0, 0, DateTimeKind.Unspecified),
                             Price = 250.0,
-                            StarTime = new DateTime(2022, 6, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            StartTime = new DateTime(2022, 6, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 

@@ -6,7 +6,7 @@ namespace Domain
     {
         public int CustomerId { get; set; }
         public int DelivererId { get; set; }
-        public DateTime StarTime { get; set; }
+        public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
         public string Comment { get; set; }
         public string Address { get; set; }
@@ -21,7 +21,7 @@ namespace Domain
         {
             CustomerId = customerId;
             DelivererId = delivererId;
-            StarTime = starTime;
+            StartTime = starTime;
             EndTime = endTime;
             Comment = comment;
             Address = address;

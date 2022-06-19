@@ -8,5 +8,6 @@ namespace Service
         public User GetUser(int id);
         public IEnumerable<User> GetAllUsers();
         public User RegisterUser(User user);
+        public User Update(User user);
     }
 }

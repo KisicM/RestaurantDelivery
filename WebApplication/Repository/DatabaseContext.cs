@@ -95,7 +95,7 @@ namespace Repository
                         Address = "Novi Sad",
                         Comment = "Ring",
                         Price = 500,
-                        StarTime = new DateTime(2022, 06, 25, 15, 00, 00),
+                        StartTime = new DateTime(2022, 06, 25, 15, 00, 00),
                         EndTime = new DateTime(2022, 06, 25, 15, 05, 00),
                         CustomerId = -3,
                         DelivererId = 0
@@ -106,7 +106,7 @@ namespace Repository
                         Address = "Novi Sad",
                         Comment = "Ring",
                         Price = 250,
-                        StarTime = new DateTime(2022, 06, 25, 15, 00, 00),
+                        StartTime = new DateTime(2022, 06, 25, 15, 00, 00),
                         EndTime = new DateTime(2022, 06, 25, 15, 05, 00),
                         CustomerId = -3,
                         DelivererId = -2

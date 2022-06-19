@@ -31,7 +31,7 @@ namespace Repository.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     CustomerId = table.Column<int>(type: "integer", nullable: false),
                     DelivererId = table.Column<int>(type: "integer", nullable: false),
-                    StarTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    StartTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     EndTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     Comment = table.Column<string>(type: "text", nullable: true),
                     Address = table.Column<string>(type: "text", nullable: true),
@@ -76,7 +76,7 @@ namespace Repository.Migrations
 
             migrationBuilder.InsertData(
                 table: "Order",
-                columns: new[] { "Id", "Address", "Comment", "CustomerId", "DelivererId", "EndTime", "Price", "StarTime" },
+                columns: new[] { "Id", "Address", "Comment", "CustomerId", "DelivererId", "EndTime", "Price", "StartTime" },
                 values: new object[,]
                 {
                     { -1, "Novi Sad", "Ring", -3, 0, new DateTime(2022, 6, 25, 15, 5, 0, 0, DateTimeKind.Unspecified), 500.0, new DateTime(2022, 6, 25, 15, 0, 0, 0, DateTimeKind.Unspecified) },

@@ -21,14 +21,14 @@ namespace WebApplication.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<User> GetAllUsers()
+        public IEnumerable<User> GetAll()
         {
             return _userService.GetAllUsers();
         }
 
         [HttpGet]
         [Route("{id}")]
-        public User GetUser(int id)
+        public User GetById(int id)
         {
             return _userService.GetUser(id);
         }
@@ -38,6 +38,13 @@ namespace WebApplication.Controllers
         public User RegisterUser(User user)
         {
             return _userService.RegisterUser(user);
+        }
+
+        [HttpPut]
+        [AllowAnonymous]
+        public User Update(User user)
+        {
+            return _userService.Update(user);
         }
     }
 }

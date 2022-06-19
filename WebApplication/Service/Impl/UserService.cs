@@ -31,5 +31,10 @@ namespace Service.Impl
         {
             return _userRepository.Insert(user);
         }
+
+        public User Update(User user)
+        {
+            return _userRepository.Update(user);
+        }
     }
 }
