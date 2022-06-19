@@ -12,7 +12,7 @@ namespace Domain
         public string Surname { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string Address { get; set; }
-        public UserRole UserRole { get; set; }
+        public Role Role { get; set; }
         public string Image { get; set; }
         public bool Approved { get; set; }
         public VerificationStatus Status { get; set; }
@@ -22,7 +22,7 @@ namespace Domain
             
         }
 
-        public User(string username, string email, string password, string name, string surname, DateTime dateOfBirth, string address, UserRole userRole, string image, bool approved, VerificationStatus status)
+        public User(string username, string email, string password, string name, string surname, DateTime dateOfBirth, string address, Role role, string image, bool approved, VerificationStatus status)
         {
             Username = username;
             Email = email;
@@ -31,7 +31,7 @@ namespace Domain
             Surname = surname;
             DateOfBirth = dateOfBirth;
             Address = address;
-            UserRole = userRole;
+            Role = role;
             Image = image;
             Approved = approved;
             Status = status;

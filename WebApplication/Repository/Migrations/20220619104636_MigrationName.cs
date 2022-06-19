@@ -55,7 +55,7 @@ namespace Repository.Migrations
                     Surname = table.Column<string>(type: "text", nullable: true),
                     DateOfBirth = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     Address = table.Column<string>(type: "text", nullable: true),
-                    UserRole = table.Column<int>(type: "integer", nullable: false),
+                    Role = table.Column<int>(type: "integer", nullable: false),
                     Image = table.Column<string>(type: "text", nullable: true),
                     Approved = table.Column<bool>(type: "boolean", nullable: false),
                     Status = table.Column<int>(type: "integer", nullable: false)
@@ -85,12 +85,12 @@ namespace Repository.Migrations
 
             migrationBuilder.InsertData(
                 table: "User",
-                columns: new[] { "Id", "Address", "Approved", "DateOfBirth", "Email", "Image", "Name", "Password", "Status", "Surname", "UserRole", "Username" },
+                columns: new[] { "Id", "Address", "Approved", "DateOfBirth", "Email", "Image", "Name", "Password", "Role", "Status", "Surname", "Username" },
                 values: new object[,]
                 {
-                    { -1, "Novi Sad", true, new DateTime(2022, 6, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "johndoe@gmail.com", "", "John", "ftn", 1, "Doe", 2, "admin" },
-                    { -2, "Novi Sad", false, new DateTime(2022, 6, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "johndoe@gmail.com", "", "John", "ftn", 0, "Doe", 1, "deliverer" },
-                    { -3, "Novi Sad", true, new DateTime(2022, 6, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "johndoe@gmail.com", "", "John", "ftn", 1, "Doe", 0, "customer" }
+                    { -1, "Novi Sad", true, new DateTime(2022, 6, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "johndoe@gmail.com", "", "John", "$2a$10$UVn74F/yEiUzKWBSGVyzHe2UfpVJ95zY50Q8bz1RFyrAYVfwFAj4i", 2, 1, "Doe", "admin" },
+                    { -2, "Novi Sad", false, new DateTime(2022, 6, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "johndoe@gmail.com", "", "John", "$2a$10$UVn74F/yEiUzKWBSGVyzHe2UfpVJ95zY50Q8bz1RFyrAYVfwFAj4i", 1, 0, "Doe", "deliverer" },
+                    { -3, "Novi Sad", true, new DateTime(2022, 6, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "johndoe@gmail.com", "", "John", "$2a$10$UVn74F/yEiUzKWBSGVyzHe2UfpVJ95zY50Q8bz1RFyrAYVfwFAj4i", 0, 1, "Doe", "customer" }
                 });
         }
 

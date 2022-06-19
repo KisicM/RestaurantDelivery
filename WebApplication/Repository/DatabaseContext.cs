@@ -22,14 +22,15 @@ namespace Repository
                     {
                         Id = -1,
                         Username = "admin",
-                        Password = "ftn",
+                        //jabuka123
+                        Password = "$2a$10$UVn74F/yEiUzKWBSGVyzHe2UfpVJ95zY50Q8bz1RFyrAYVfwFAj4i",
                         Email = "johndoe@gmail.com",
                         Name = "John",
                         Surname = "Doe",
                         Address = "Novi Sad",
                         Approved = true,
                         Image = "",
-                        UserRole = UserRole.Admin,
+                        Role = Role.Admin,
                         DateOfBirth = new DateTime(2022, 06, 25),
                         Status = VerificationStatus.Approved
                     },
@@ -37,14 +38,15 @@ namespace Repository
                     {
                         Id = -2,
                         Username = "deliverer",
-                        Password = "ftn",
+                        //jabuka123
+                        Password = "$2a$10$UVn74F/yEiUzKWBSGVyzHe2UfpVJ95zY50Q8bz1RFyrAYVfwFAj4i",
                         Email = "johndoe@gmail.com",
                         Name = "John",
                         Surname = "Doe",
                         Address = "Novi Sad",
                         Approved = false,
                         Image = "",
-                        UserRole = UserRole.Deliverer,
+                        Role = Role.Deliverer,
                         DateOfBirth = new DateTime(2022, 06, 25),
                         Status = VerificationStatus.Processing
 
@@ -53,14 +55,15 @@ namespace Repository
                     {
                         Id = -3,
                         Username = "customer",
-                        Password = "ftn",
+                        //jabuka123
+                        Password = "$2a$10$UVn74F/yEiUzKWBSGVyzHe2UfpVJ95zY50Q8bz1RFyrAYVfwFAj4i",
                         Email = "johndoe@gmail.com",
                         Name = "John",
                         Surname = "Doe",
                         Address = "Novi Sad",
                         Approved = true,
                         Image = "",
-                        UserRole = UserRole.Customer,
+                        Role = Role.Customer,
                         DateOfBirth = new DateTime(2022, 06, 25),
                         Status = VerificationStatus.Approved
                     }

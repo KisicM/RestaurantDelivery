@@ -10,7 +10,7 @@ using Repository;
 namespace Repository.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20220619083457_MigrationName")]
+    [Migration("20220619104636_MigrationName")]
     partial class MigrationName
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -143,14 +143,14 @@ namespace Repository.Migrations
                     b.Property<string>("Password")
                         .HasColumnType("text");
 
+                    b.Property<int>("Role")
+                        .HasColumnType("integer");
+
                     b.Property<int>("Status")
                         .HasColumnType("integer");
 
                     b.Property<string>("Surname")
                         .HasColumnType("text");
-
-                    b.Property<int>("UserRole")
-                        .HasColumnType("integer");
 
                     b.Property<string>("Username")
                         .HasColumnType("text");
@@ -169,10 +169,10 @@ namespace Repository.Migrations
                             Email = "johndoe@gmail.com",
                             Image = "",
                             Name = "John",
-                            Password = "ftn",
+                            Password = "$2a$10$UVn74F/yEiUzKWBSGVyzHe2UfpVJ95zY50Q8bz1RFyrAYVfwFAj4i",
+                            Role = 2,
                             Status = 1,
                             Surname = "Doe",
-                            UserRole = 2,
                             Username = "admin"
                         },
                         new
@@ -184,10 +184,10 @@ namespace Repository.Migrations
                             Email = "johndoe@gmail.com",
                             Image = "",
                             Name = "John",
-                            Password = "ftn",
+                            Password = "$2a$10$UVn74F/yEiUzKWBSGVyzHe2UfpVJ95zY50Q8bz1RFyrAYVfwFAj4i",
+                            Role = 1,
                             Status = 0,
                             Surname = "Doe",
-                            UserRole = 1,
                             Username = "deliverer"
                         },
                         new
@@ -199,10 +199,10 @@ namespace Repository.Migrations
                             Email = "johndoe@gmail.com",
                             Image = "",
                             Name = "John",
-                            Password = "ftn",
+                            Password = "$2a$10$UVn74F/yEiUzKWBSGVyzHe2UfpVJ95zY50Q8bz1RFyrAYVfwFAj4i",
+                            Role = 0,
                             Status = 1,
                             Surname = "Doe",
-                            UserRole = 0,
                             Username = "customer"
                         });
                 });

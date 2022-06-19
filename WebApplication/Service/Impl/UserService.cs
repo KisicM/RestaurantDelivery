@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using AutoMapper;
 using Repository;
 
+
 namespace Service.Impl
 {
     public class UserService : IUserService
     {
-
         private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
 
@@ -15,6 +15,11 @@ namespace Service.Impl
         {
             _userRepository = userRepository;
             _mapper = mapper;
+        }
+
+        public User GetByUsername(string username)
+        {
+            return _userRepository.GetByUsername(username);
         }
 
         public IEnumerable<User> GetAllUsers()
@@ -29,6 +34,7 @@ namespace Service.Impl
 
         public User RegisterUser(User user)
         {
+            user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
             return _userRepository.Insert(user);
         }
 

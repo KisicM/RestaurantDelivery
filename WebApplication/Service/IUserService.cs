@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Domain;
+using DTO;
 
 namespace Service
 {
@@ -9,5 +10,6 @@ namespace Service
         public IEnumerable<User> GetAllUsers();
         public User RegisterUser(User user);
         public User Update(User user);
+        public User GetByUsername(string username);
     }
 }

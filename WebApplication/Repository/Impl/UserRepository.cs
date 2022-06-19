@@ -12,9 +12,9 @@ namespace Repository.Impl
             _dbContext = dbContext;
         }
 
-        public User GetUsingCredentials(string username, string password)
+        public User GetByUsername(string username)
         {
-            return _dbContext.Set<User>().FirstOrDefault(u => u.Username == username && u.Password == password);
+            return _dbContext.Set<User>().FirstOrDefault(u => u.Username == username);
         }
     }
 }

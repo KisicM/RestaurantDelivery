@@ -9,7 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Domain;
-using HospitalAPI.JWT;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -22,7 +21,9 @@ using Repository;
 using Repository.Impl;
 using Service;
 using Service.Impl;
-using WebApplication.JWT;
+using WebApplication.Helpers;
+using WebApplication.Authorization;
+using System.Text.Json.Serialization;
 
 namespace WebApplication
 {
@@ -38,7 +39,11 @@ namespace WebApplication
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers().AddJsonOptions(x =>
+            {
+                x.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+            });
+
             services.AddDbContext<DatabaseContext>(options =>
             {
                 options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"),
@@ -46,47 +51,12 @@ namespace WebApplication
                     .UseLazyLoadingProxies();
             });
 
-            //database
+            services.AddCors();
 
-            services.AddAuthentication(options =>
-            {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).AddJwtBearer(options =>
-            {
-                options.SaveToken = true;
-                options.RequireHttpsMetadata = false;
-                options.TokenValidationParameters = new TokenValidationParameters()
-                {
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidAudience = Configuration["JWT:ValidAudience"],
-                    ValidIssuer = Configuration["JWT:ValidIssuer"],
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JWT:Secret"]))
-                };
-            });
-            services.AddAuthorization(options =>
-            {
-                options.AddPolicy("Customer", policy => policy.Requirements.Add(new RoleRequirement("Customer")));
-                options.AddPolicy("Deliverer", policy => policy.Requirements.Add(new RoleRequirement("Deliverer")));
-                options.AddPolicy("Admin", policy => policy.Requirements.Add(new RoleRequirement("Admin")));
-            });
+            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
 
-            services.AddCors(options =>
-            {
-                options.AddPolicy("ClientPermission", policy =>
-                {
-                    policy.AllowAnyHeader()
-                        .AllowAnyMethod()
-                        .AllowAnyHeader()
-                        .AllowAnyOrigin();
-                    //.WithOrigins("http://localhost:3000")
-                    //.AllowCredentials();
-                });
-            });
             services.AddAutoMapper(typeof(Startup));
-            services.AddScoped<ILoginService, LoginService>();
+            services.AddScoped<IJwtUtils, JwtUtils>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IArticleRepository, ArticleRepository>();
@@ -115,9 +85,16 @@ namespace WebApplication
             app.UseHttpsRedirection();
 
             app.UseRouting();
-            app.UseCors("ClientPermission");
-            app.UseAuthentication();
-            app.UseAuthorization();
+            //app.UseCors("ClientPermission");
+            //app.UseAuthentication();
+            //app.UseAuthorization();
+            app.UseCors(x => x
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
+
+            app.UseMiddleware<ErrorHandlerMiddleware>();
+            app.UseMiddleware<JwtMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {
